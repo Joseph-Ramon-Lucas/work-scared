@@ -1,4 +1,6 @@
 import type { PlasmoCSConfig } from "plasmo";
+import { sendToBackground } from "@plasmohq/messaging";
+import type { pMessage } from "~messages";
 
 console.log("oi");
 
@@ -35,3 +37,18 @@ export const config: PlasmoCSConfig = {
 	matches: ["<all_urls>"],
 	world: "MAIN",
 };
+async function sendToBack() {
+	try {
+		const resp = await sendToBackground<pMessage>({
+			name: [],
+			body: { id: 123 },
+			extensionId: "ccmhihllkmoajiidmpaddloegmgpimbd",
+			
+		});
+		console.log(resp, "Background sent this");
+	} catch (error) {
+		console.error("Error sending message to background:", error);
+	}
+}
+
+await sendToBack();
