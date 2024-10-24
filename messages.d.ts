@@ -1,10 +1,10 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging";
 
-export interface PingMessage extends PlasmoMessaging.MessageHandler{
-    name: "ping"
-    body: {
-        id: number
-    }
+export interface PingMessage extends PlasmoMessaging.Message {
+	name: "ping";
+	body: {
+		id: number;
+	};
 }
 
-export type pMessage = PingMessage
+export type pMessage = PingMessage;

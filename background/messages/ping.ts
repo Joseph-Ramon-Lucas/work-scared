@@ -1,14 +1,14 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging";
+import type { PingMessage, pMessage } from "~messages";
 
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
-	const { id } = req.body;
+	const { body } = req.body;
 
-	console.log("received id:", id);
+	console.log("received body:", body);
 
 	res.send({
 		message: "pong",
-		receivedId: id,
+		receivedId: body,
 	});
 };
 export default handler;
-

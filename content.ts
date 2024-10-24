@@ -1,6 +1,6 @@
 import type { PlasmoCSConfig } from "plasmo";
 import { sendToBackground } from "@plasmohq/messaging";
-import type { pMessage } from "~messages";
+import type { PingMessage, pMessage } from "~messages";
 
 console.log("oi");
 
@@ -33,17 +33,14 @@ const intervalId = setInterval(() => {
 	console.log("time passed:", currentTime);
 }, 1000);
 
-export const config: PlasmoCSConfig = {
-	matches: ["<all_urls>"],
-	world: "MAIN",
-};
 async function sendToBack() {
 	try {
-		const resp = await sendToBackground<pMessage>({
-			name: [],
-			body: { id: 123 },
+		const resp = await sendToBackground({
+			name: "ping",
+			body: {
+				id: 123,
+			},
 			extensionId: "ccmhihllkmoajiidmpaddloegmgpimbd",
-			
 		});
 		console.log(resp, "Background sent this");
 	} catch (error) {
@@ -51,4 +48,9 @@ async function sendToBack() {
 	}
 }
 
-await sendToBack();
+sendToBack();
+
+export const config: PlasmoCSConfig = {
+	matches: ["<all_urls>"],
+	world: "ISOLATED",
+};
