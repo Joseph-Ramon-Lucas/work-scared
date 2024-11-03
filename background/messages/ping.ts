@@ -1,14 +1,20 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging";
-import type { PingMessage, pMessage } from "~messages";
+import { relayMessage } from "@plasmohq/messaging";
 
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
-	const { body } = req.body;
-
-	console.log("received body:", body);
+	const message = "pelotas de ping";
 
 	res.send({
-		message: "pong",
-		receivedId: body,
+		message,
 	});
 };
+
 export default handler;
+
+// async function catchRelay(req) {
+// 	relayMessage({ name: "ping" }, async (req) => {
+
+// 	});
+// }
+
+// export default catchRelay;
