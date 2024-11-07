@@ -5,14 +5,15 @@ import { sendToBackgroundViaRelay } from "@plasmohq/messaging";
 
 console.log("oi");
 
-const maxTime = 5;
+const maxTime = 50;
 
 let currentTime = 0;
 
-const intervalId = setInterval(() => {
+const intervalId = setInterval(async () => {
 	console.log("it's been 1 second");
 	currentTime++;
-	if (currentTime > maxTime) {
+	const OOT: boolean = await sendToBack();
+	if (OOT) {
 		console.log("overtimEE lmao");
 
 		const image = document.createElement("img");
@@ -28,41 +29,30 @@ const intervalId = setInterval(() => {
 		image.style.width = "100vw";
 		image.style.height = "100vh";
 		document.body.appendChild(image);
-
+		console.log("CLEAR", intervalId);
 		return clearInterval(intervalId);
 	}
 	console.log("time passed:", currentTime);
 }, 1000);
 
-async function sendToBack() {
-	// console.log("mmmmmmmmmmmessages");
-	// try {
-	// 	const resp = await sendToBackground({
-	// 		name: "ping",
-	// 		body: {
-	// 			id: 123,
-	// 		},
-	// 		extensionId: "ccmhihllkmoajiidmpaddloegmgpimbd",
-	// 	});
-	// 	console.log(resp, "Background sent this");
-	// } catch (error) {
-	// 	console.error("Error sending message to background:", error);
-	// }
-
+async function sendToBack(): Promise<boolean> {
 	console.log("rrrrrelayy");
 	try {
 		const resp = await sendToBackgroundViaRelay({
 			name: "ping",
 		});
+		// TODO: sent to background should send seconds active on a specific page
+		// figure out how to put body in background function
+		// figure out how to increment timer only when on appropriate website
 
 		console.log("my resp :)", resp);
+		return resp;
 	} catch (error) {
 		console.error("Error sending message to background:", error);
 	}
 }
-
-sendToBack();
-
+// when we're on a tracked tab, send a second
+// if we get a response back- time is up- unleash the horror
 export const config: PlasmoCSConfig = {
 	matches: ["<all_urls>"],
 	world: "MAIN",

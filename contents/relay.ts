@@ -8,4 +8,8 @@ export const config: PlasmoCSConfig = {
 
 relayMessage({
 	name: "ping",
+	body: {
+		site: "https://example.com/",
+		time: 69,
+	},
 });
