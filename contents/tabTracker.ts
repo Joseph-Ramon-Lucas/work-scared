@@ -12,8 +12,10 @@ let currentTime = 0;
 const intervalId = setInterval(async () => {
 	console.log("it's been 1 second");
 	currentTime++;
-	const OOT: boolean = await sendToBack();
-	if (OOT) {
+	const OOT = await sendToBack();
+	console.log("OOT", OOT[0].OOT);
+
+	if (OOT[0].OOT) {
 		console.log("overtimEE lmao");
 
 		const image = document.createElement("img");
@@ -35,7 +37,7 @@ const intervalId = setInterval(async () => {
 	console.log("time passed:", currentTime);
 }, 1000);
 
-async function sendToBack(): Promise<boolean> {
+async function sendToBack() {
 	console.log("rrrrrelayy");
 	try {
 		const resp = await sendToBackgroundViaRelay({
@@ -46,6 +48,7 @@ async function sendToBack(): Promise<boolean> {
 		// figure out how to increment timer only when on appropriate website
 
 		console.log("my resp :)", resp);
+		//ISSUE - the resp isn't ticking up
 		return resp;
 	} catch (error) {
 		console.error("Error sending message to background:", error);

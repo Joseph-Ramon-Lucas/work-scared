@@ -1,11 +1,11 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging";
 import { relayMessage } from "@plasmohq/messaging";
 
-let timeKeeper = { "https://example.com/": 0, "https://github.com": 0 };
+let timeKeeper = { "https://example.com": 0, "https://github.com": 0 };
 // {url: time spent}
 
-const timeoutLimit = 10;
-const OOT = false;
+const timeoutLimit = 3;
+let OOT = false;
 
 // how to handle the ping message
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
@@ -13,11 +13,14 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
 	console.log("MY REQ AAA", req);
 	// update time on timeKeeper
 	const site = req.sender.origin;
+	console.log("timeeeee", timeoutLimit);
 	if (Object.keys(timeKeeper).includes(site)) {
 		timeKeeper[site]++;
 	}
 	if (timeKeeper[site] >= timeoutLimit) {
-		res.send({ OOT: true });
+		res.send([{ OOT: true }, site, timeKeeper]);
+	} else {
+		res.send([{ OOT: false }, site, timeKeeper]);
 	}
 
 	// webTracker++;
