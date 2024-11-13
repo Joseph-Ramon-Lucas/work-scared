@@ -5,18 +5,18 @@ import { sendToBackgroundViaRelay } from "@plasmohq/messaging";
 
 console.log("oi");
 
-const maxTime = 50;
-
-let currentTime = 0;
+let loiterTime = 0;
 
 const intervalId = setInterval(async () => {
 	console.log("it's been 1 second");
-	currentTime++;
+	loiterTime++;
 	const OOT = await sendToBack();
 	console.log("OOT", OOT[0].OOT);
 
 	if (OOT[0].OOT) {
 		console.log("overtimEE lmao");
+		const docBod = document.body;
+		docBod.remove();
 
 		const image = document.createElement("img");
 		image.src =
@@ -34,7 +34,7 @@ const intervalId = setInterval(async () => {
 		console.log("CLEAR", intervalId);
 		return clearInterval(intervalId);
 	}
-	console.log("time passed:", currentTime);
+	console.log("time passed:", loiterTime);
 }, 1000);
 
 async function sendToBack() {

@@ -4,8 +4,7 @@ import { relayMessage } from "@plasmohq/messaging";
 let timeKeeper = { "https://example.com": 0, "https://github.com": 0 };
 // {url: time spent}
 
-const timeoutLimit = 3;
-let OOT = false;
+const timeoutLimit = 10;
 
 // how to handle the ping message
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
