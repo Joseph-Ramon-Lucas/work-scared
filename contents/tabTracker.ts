@@ -15,8 +15,11 @@ const intervalId = setInterval(async () => {
 
 	if (OOT[0].OOT) {
 		console.log("overtimEE lmao");
-		const docBod = document.body;
-		docBod.remove();
+
+		const bodyChildren = document.body.children;
+		for (const child of bodyChildren) {
+			child.remove();
+		}
 
 		const image = document.createElement("img");
 		image.src =
