@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./style.css";
 
 function IndexPopup() {
 	const [currentUrl, setCurrentUrl] = useState<string>("");
@@ -21,8 +22,9 @@ function IndexPopup() {
 				padding: 16,
 			}}
 		>
+			<h1 className="font-black">Work Scared</h1>
 			<h2>
-				Welcome to your v v cool{" "}
+				Welcome to your v v cool
 				<a href="https://www.plasmo.com" target="_blank" rel="noreferrer">
 					Plasmo
 				</a>{" "}
