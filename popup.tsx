@@ -38,18 +38,24 @@ function IndexPopup() {
 						Get your work done!
 					</h2>
 				</div>
-				<div className="border-solid border-2 border-red-900 p-3">
-					<h3 className="text-stone-100 text-center text-lg text-nowrap">
+				<div className="border-solid border-2 border-red-900 p-3 rounded-md">
+					<h3 className="text-stone-100 text-center text-lg text-nowrap m-1">
 						Is this site <i>distracting</i> you? <br /> {currentUrl}
 					</h3>
-					<div className="bg-stone-900 flex justify-center">
+					<div className="bg-stone-900 flex justify-center rounded-md">
 						<div className="flex-1 text-center">
-							<button className="text-stone-100 text-center" type="button">
+							<button
+								className="text-stone-100 text-center w-full hover:bg-black rounded-md"
+								type="button"
+							>
 								yes
 							</button>
 						</div>
-						<div className="flex-1 text-center">
-							<button className=" text-stone-100 text-center" type="button">
+						<div className="flex-1 text-center ">
+							<button
+								className="text-stone-100 text-center w-full hover:bg-black rounded-md"
+								type="button"
+							>
 								no
 							</button>
 						</div>
@@ -62,11 +68,15 @@ function IndexPopup() {
 				</div>
 				<div className="mt-5">
 					<ul className="flex justify-center bg-stone-700 rounded-2xl">
-						<li className="flex-1 text-center text-stone-100 font-semibold">
-							<button type="button">Settings ⚙️</button>
+						<li className="flex-1 text-center text-stone-100 font-semibold w-full hover:bg-stone-900 rounded-2xl">
+							<button className="w-full" type="button">
+								Settings ⚙️
+							</button>
 						</li>
-						<li className="flex-1 text-center text-stone-100 font-semibold">
-							<button type="button">Distractions 📃 </button>
+						<li className="flex-1 text-center text-stone-100 font-semibold w-full hover:bg-stone-900 rounded-2xl">
+							<button className="w-full" type="button">
+								Distractions 📃
+							</button>
 						</li>
 					</ul>
 				</div>
